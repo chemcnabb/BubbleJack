@@ -16,13 +16,8 @@ package
 		public function Main()
 		{
 			super(320, 480, 60, false);
-
 			FP.world = new MainMenu();
-			
-			Input.define("Left", 	Key.LEFT, 	Key.A);
-			Input.define("Right", 	Key.RIGHT, 	Key.D);
-			Input.define("Up", 		Key.UP, 	Key.W);
-			Input.define("Down", 	Key.DOWN, 	Key.S);
+
 		}
 
 		override public function init():void

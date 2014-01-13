@@ -25,18 +25,24 @@ package
 		public var color_array:Array = [blue, red, yellow, green, purple]; //, yellow, green, purple
 		public var color_name_array:Array = ["blue", "red", "yellow", "green", "purple"]; //, yellow, green, purple
 		public var current_color_array:Array;
+        public var time:int = 0;
+        public var totaltime:int = 0;
 
 		public function BubbleCard(set_color:String = "")
 		{
 			//graphic = new Image(BUBBLE);
 			this.set_color = set_color;
-			trace("INIT COLOR: " + this.set_color);
+			//trace("INIT COLOR: " + this.set_color);
 			this.random_select = Math.floor(Math.random() * this.color_array.length);
 			setColor();
 			setHitbox(23, 23);
 			type = "bubble";
 			drawBubble();
 		}
+
+        public function currentIndex():Number{
+            return this.random_select+1;
+        }
 		
 		public function getColorName():String {
 			return this.color_name_array[this.random_select];
@@ -46,6 +52,17 @@ package
 				var array_color:Array = this.color_array[this.color_name_array.indexOf(this.set_color)];
 				return array_color;
 		}
+
+        override public function update():void
+        {
+            time ++;
+            totaltime ++;
+            if (time == 60)
+            {
+                // Reset the counter after 60 frames has elapsed.
+                time = 0;
+            }
+        }
 		
 		public function drawBubble():void
 		{
@@ -65,6 +82,7 @@ package
              
             addGraphic(new Stamp(bd));
 		}
+
 		
 		override public function render():void
 		{
